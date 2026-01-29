@@ -54,13 +54,20 @@ export default function Users() {
         <p className="text-gray-500 text-sm">No users online</p>
       )}
 
-      {onlineUsers.map((u) => (
+      {onlineUsers?.map((u, ind) => (
         <div
           key={u}
           onClick={() => openChat(u)}
-          className="relative bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded text-white cursor-pointer mb-2"
+          className="
+      relative flex items-center gap-2
+      bg-gray-800 hover:bg-gray-700
+      px-3 py-2 rounded
+      text-white cursor-pointer mb-2
+    "
         >
-          {u}
+
+
+          <span>{ind + 1}. &nbsp; {u}</span>
 
           {unreadPrivate[u] > 0 && (
             <span className="absolute top-1 right-2 bg-red-600 text-xs px-2 rounded-full">
@@ -69,6 +76,7 @@ export default function Users() {
           )}
         </div>
       ))}
+
     </div>
   );
 }
