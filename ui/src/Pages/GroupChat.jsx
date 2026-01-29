@@ -1,26 +1,10 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import socket from "../API/socket";
+import { useChat } from "../context/ChatContext";
 
 export default function GroupChat() {
-  const { state } = useLocation();
-  const username = state.username;
-  const initialMessages = state.initialMessages || [];
-
+  const { username, groupMessages, setUnreadGroup } = useChat();
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState(initialMessages);
-
-  useEffect(() => {
-    if (!socket.connected) socket.connect();
-
-    socket.emit("register", username);
-
-    socket.on("group_message", (data) => {
-      setMessages((prev) => [...prev, data]);
-    });
-
-    return () => socket.off("group_message");
-  }, [username]);
 
   const sendMessage = () => {
     if (!message.trim()) return;
@@ -33,28 +17,15 @@ export default function GroupChat() {
     setMessage("");
   };
 
+  useState(() => setUnreadGroup(0), []);
+
   return (
     <div className="w-full">
-      <h2 className="mb-4 font-semibold">
-        Room Chat
-      </h2>
-
-      <div className="h-64 bg-gray-800 p-3 rounded overflow-y-auto mb-3 space-y-1">
-        {messages.map((m, i) => (
-          <div
-            key={i}
-            className={`text-sm ${
-              m.from === username ? "text-right" : "text-left"
-            }`}
-          >
-            <span
-              className={`inline-block px-3 py-1 rounded-lg ${
-                m.from === username
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-700 text-gray-200"
-              }`}
-            >
-              <b>{m.from}:</b> {m.message}
+      <div className="h-100 bg-gray-800 p-3 rounded overflow-y-auto mb-3">
+        {groupMessages.map((m, i) => (
+          <div key={i} className={`${m.from === username ? "text-right" : "text-left"} py-0.5`}>
+            <span className="inline-block px-3 py-1 rounded bg-purple-600 text-white">
+              <b className="font-serif under">{m.from}:</b> {m.message}
             </span>
           </div>
         ))}
@@ -62,16 +33,11 @@ export default function GroupChat() {
 
       <div className="flex gap-2">
         <input
-          className="flex-1 bg-gray-800 border border-gray-600 px-3 py-2 rounded"
+          className="flex-1 bg-gray-800 px-3 py-2 rounded"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type message..."
         />
-
-        <button
-          onClick={sendMessage}
-          className="bg-purple-600 px-4 rounded"
-        >
+        <button onClick={sendMessage} className="bg-purple-600 px-4 rounded">
           Send
         </button>
       </div>
