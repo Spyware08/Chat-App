@@ -14,11 +14,11 @@ const socketHandler = (server) => {
 
   io.on("connection", (socket) => {
     socket.on("register", (username) => {
-      console.log("register user", username);
+      // console.log("register user", username);
 
       onlineUsers[username] = socket.id;
 
-      console.log("all users ", onlineUsers);
+      // console.log("all users ", onlineUsers);
 
       // send updated online users list to everyone
       io.emit("online_users", Object.keys(onlineUsers));
