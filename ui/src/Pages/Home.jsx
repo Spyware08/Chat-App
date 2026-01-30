@@ -25,14 +25,12 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-4xl bg-gray-900 border border-gray-700 rounded-xl">
 
-        {/* Header */}
         <div className="p-6 border-b border-gray-700 text-center">
           <h1 className="text-2xl font-semibold">
             Rapid Chat
           </h1>
         </div>
 
-        {/* Content */}
         <div className="p-6 min-h-[60vh] flex items-center justify-center">
 
           {isHomePage && (
@@ -50,7 +48,6 @@ export default function Home() {
               >
                 Register
               </button>
-              
             </div>
           )}
 
