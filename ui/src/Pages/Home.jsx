@@ -28,7 +28,7 @@ export default function Home() {
         {/* Header */}
         <div className="p-6 border-b border-gray-700 text-center">
           <h1 className="text-2xl font-semibold">
-            Chat App
+            Rapid Chat
           </h1>
         </div>
 
