@@ -25,12 +25,12 @@ export const ChatProvider = ({ children }) => {
     if (!socket.connected) socket.connect();
     socket.emit("register", username);
 
-    // 🔵 ONLINE USERS
+    // online user
     socket.on("online_users", (users) => {
       setOnlineUsers(users.filter((u) => u !== username));
     });
 
-    // 🔵 PRIVATE MESSAGE (incoming)
+    // recieved personal Msg
     socket.on("private_message", (data) => {
       const { from } = data;
 
@@ -45,7 +45,7 @@ export const ChatProvider = ({ children }) => {
       }));
     });
 
-    // 🔵 GROUP MESSAGE
+    // group Chat
     socket.on("group_message", (data) => {
       setGroupMessages((prev) => [...prev, data]);
       setUnreadGroup((prev) => prev + 1);
@@ -58,7 +58,7 @@ export const ChatProvider = ({ children }) => {
     };
   }, [username]);
 
-  // ✅ SEND PRIVATE MESSAGE (outgoing)
+  // send private msg
   const sendPrivateMessage = ({ from, to, message }) => {
     socket.emit("private_message", { from, to, message });
 
