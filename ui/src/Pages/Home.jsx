@@ -27,7 +27,7 @@ export default function Home() {
 
         <div className="p-6 border-b border-gray-700 text-center">
           <h1 className="text-2xl font-semibold">
-            Rapid Chat
+            Rapid Chat 
           </h1>
         </div>
 

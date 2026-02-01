@@ -50,9 +50,8 @@ export default function GroupChat() {
         {groupMessages.map((m, i) => (
           <div
             key={i}
-            className={`py-0.5 ${
-              m.from === username ? "text-right" : "text-left"
-            }`}
+            className={`py-0.5 ${m.from === username ? "text-right" : "text-left"
+              }`}
           >
             <span className="inline-block px-3 py-1 rounded bg-purple-600 text-white">
               <b className="font-serif">{m.from}:</b> {m.message}
@@ -61,44 +60,43 @@ export default function GroupChat() {
         ))}
       </div>
 
-      {/* INPUT */}
-      <div className="relative flex gap-2 items-center">
-        {/* Emoji button */}
-        <button
-          onClick={() => setShowEmoji((p) => !p)}
-          className="text-2xl px-2"
-        >
-          😊
-        </button>
-
-        {/* Emoji picker */}
-        {showEmoji && (
-          <div
-            ref={emojiRef}
-            className="absolute bottom-14 left-0 z-50"
-          >
-            <EmojiPicker
-              theme="dark"
-              onEmojiClick={onEmojiClick}
-              height={350}
-              width={300}
-            />
-          </div>
-        )}
-
+      <div className="flex">
         <input
           className="flex-1 bg-gray-800 px-3 py-2 rounded text-white"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type message"
         />
+        <div className="relative flex gap-2 items-center">
+        
+          <button
+            onClick={() => setShowEmoji((p) => !p)}
+            className="text-2xl px-2"
+          >
+            😊
+          </button>
 
-        <button
-          onClick={sendMessage}
-          className="bg-purple-600 px-4 rounded text-white"
-        >
-          Send
-        </button>
+          {showEmoji && (
+            <div
+              ref={emojiRef}
+              className="absolute bottom-14 left-0 z-50"
+            >
+              <EmojiPicker
+                theme="dark"
+                onEmojiClick={onEmojiClick}
+                height={350}
+                width={300}
+              />
+            </div>
+          )}
+
+          <button
+            onClick={sendMessage}
+            className="bg-purple-600 px-4 py-1.5 rounded text-white"
+          >
+            Send
+          </button>
+        </div>
       </div>
     </div>
   );

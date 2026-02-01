@@ -7,9 +7,9 @@ const {
     postData
 } = require("../controller/chat/chat.controller");
 
-// health check
+
 router.get("/", (req, res) => {
-    res.send({ msg: "API working" });
+    res.send({ msg: "backend working" });
 });
 
 // chat routes
