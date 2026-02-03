@@ -18,7 +18,12 @@ export default function Home() {
 
     navigate("/users", { state: { username } });
   };
-
+useEffect(() => {
+    if (isHomePage && socket.connected) {
+      socket.disconnect();
+      console.log("Socket disconnected on Home page");
+    }
+  }, [isHomePage]);
  
 
   return (
