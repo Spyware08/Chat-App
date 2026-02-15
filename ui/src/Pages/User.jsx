@@ -92,13 +92,13 @@ export default function Users() {
         <button
           onClick={handleRefresh}
           disabled={loading}
-          className="flex items-center gap-1 text-xs bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white px-3 py-1 rounded transition"
+          className="flex items-center gap-1 text-xs bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white px-2 py-2 rounded transition"
         >
           <FiRefreshCw
             size={14}
             className={loading ? "animate-spin" : ""}
           />
-          {loading ? "Fetching" : "Refresh"}
+          {/* {loading ? "Fetching" : "Refresh"} */}
         </button>
       </div>
 
