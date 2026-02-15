@@ -49,7 +49,6 @@ export default function Users() {
   try {
     const response = await API.get("/users");
 
-    console.log(response); 
         setOnlineUsers(response.data?.filter(i=>i!=username));
   } catch (error) {
     console.error("Error fetching users:", error);
