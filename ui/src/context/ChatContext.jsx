@@ -76,7 +76,7 @@ export const ChatProvider = ({ children }) => {
         setUsername,
 
         onlineUsers,
-
+        setOnlineUsers,
         privateChats,
 
         sendPrivateMessage,

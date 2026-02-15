@@ -21,6 +21,8 @@ const socketHandler = (server) => {
       // console.log("all users ", onlineUsers);
 
       // send updated online users list to everyone
+      console.log(Object.keys(onlineUsers),"2",onlineUsers);
+      
       io.emit("online_users", Object.keys(onlineUsers));
     });
 
@@ -72,4 +74,4 @@ const getIO = () => {
   return io;
 };
 
-module.exports = { socketHandler, getIO };
+module.exports = { socketHandler, getIO,onlineUsers };
