@@ -24,7 +24,7 @@ export default function Home() {
       socket.disconnect();
   
     }else{
-await function checkBackend(){
+async function checkBackend(){
      const response = await API.get("/")
       console.log("check backedn", response)
 }
