@@ -22,7 +22,10 @@ export default function Home() {
     //disconnet
     if (isHomePage && socket.connected) {
       socket.disconnect();
-      console.log("Socket disconnected (returned to home)");
+  
+    }else{
+     const response = await API.get("/")
+      console.log("check backedn", response)
     }
   }, [isHomePage]);
 
