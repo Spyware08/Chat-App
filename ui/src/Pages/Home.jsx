@@ -18,6 +18,13 @@ export default function Home() {
 
     navigate("/users", { state: { username } });
   };
+  useEffect(() => {
+    //disconnet
+    if (isHomePage && socket.connected) {
+      socket.disconnect();
+      console.log("Socket disconnected (returned to home)");
+    }
+  }, [isHomePage]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-950 via-gray-900 to-black relative overflow-hidden">
